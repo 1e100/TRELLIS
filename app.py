@@ -3,6 +3,7 @@ from gradio_litmodel3d import LitModel3D
 
 import os
 import shutil
+import argparse
 from typing import *
 import torch
 import numpy as np
@@ -398,6 +399,9 @@ with gr.Blocks(delete_cache=(600, 600)) as demo:
 
 # Launch the Gradio app
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("--share", action="store_true", help="Tunnel the demo through Gradio.")
+    args = parser.parse_args()
     pipeline = TrellisImageTo3DPipeline.from_pretrained("microsoft/TRELLIS-image-large")
     pipeline.cuda()
-    demo.launch()
+    demo.launch(share=args.share)
