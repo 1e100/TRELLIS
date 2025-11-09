@@ -7,7 +7,7 @@ FROM nvidia/cuda:11.8.0-devel-ubuntu22.04
 ENV TORCH_CUDA_ARCH_LIST="8.0 8.6+PTX"
 # Parallelism when building Flash Attention. If you have a ton of cores and
 # DRAM, setting this higher can help with the otherwise outrageous build times.
-ENV MAX_JOBS=32
+ENV MAX_JOBS=16
 
 # System deps for CUDA extensions & rendering utils
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
